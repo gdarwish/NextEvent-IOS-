@@ -8,13 +8,16 @@
 import Foundation
 
 class Event{
-    var title: String
-    var date: String
-    var address: String
-    
-    init(title: String, date: String, address: String) {
+    internal init(title: String, date: String, address: String, imageUrl: String) {
         self.title = title
         self.date = date
         self.address = address
+        self.imageUrl = imageUrl
     }
+    
+    
+    var title: String
+    var date: String
+    var address: String
+    var imageUrl: String
 }
