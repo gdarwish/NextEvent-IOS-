@@ -136,7 +136,13 @@
                             <constraint firstItem="ncg-rx-JHT" firstAttribute="top" secondItem="NTL-Dm-HML" secondAttribute="bottom" constant="5" id="zg5-g4-1Fc"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Upcoming" id="1Ar-Uo-BKk"/>
+                    <navigationItem key="navigationItem" title="Upcoming" id="1Ar-Uo-BKk">
+                        <barButtonItem key="rightBarButtonItem" image="mappin.and.ellipse" catalog="system" id="s0Y-nV-LhC">
+                            <connections>
+                                <action selector="changeCity:" destination="Iyo-xF-1VZ" id="Gwk-eC-eDo"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="ncg-rx-JHT" id="dvv-ZT-Kpq"/>
                     </connections>
@@ -207,6 +213,7 @@
         <image name="calendar" catalog="system" width="128" height="106"/>
         <image name="clock" catalog="system" width="128" height="121"/>
         <image name="location" catalog="system" width="128" height="121"/>
+        <image name="mappin.and.ellipse" catalog="system" width="118" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

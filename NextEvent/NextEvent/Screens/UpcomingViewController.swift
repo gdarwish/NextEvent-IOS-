@@ -16,21 +16,34 @@ class UpcomingViewController: UIViewController {
     var events = [Event]()
     
     
-    //URL(string: "https://api.predicthq.com/v1/events/")!
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "City", style: .plain, target: self, action: #selector(addTapped))
-        
-        
-        tableView.delegate = self
-        tableView.dataSource = self
-        
+    override func viewWillAppear(_ animated: Bool) {
+        // get events when the app runs
         getEvent()
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // set tableView delegate and dataSource
+        tableView.delegate = self
+        tableView.dataSource = self
+    }
+    
     // MARK:: Methods
+    
+    // change city bar button
+    @IBAction func changeCity(_ sender: Any) {
+        //1. Create the alert controller.
+        let ac = UIAlertController(title: "Change City", message: "Enter a new city", preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
+        ac.addTextField { (textField) in textField.text = "Windsor"}
+        // 3. Grab the value from the text field, and print it when the user clicks OK.
+        ac.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak ac] (_) in
+            let textField = ac?.textFields![0] // Force unwrapping because we know it exists.
+            print("Text field: \(String(describing: textField?.text))")
+        }))
+        self.present(ac, animated: true)
+    }
+    
     // Create an alert with dynamic message
     func alert(message: String){
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
@@ -75,19 +88,6 @@ class UpcomingViewController: UIViewController {
             }
         }.resume()
     }
-    
-    @objc func addTapped(){
-        //1. Create the alert controller.
-        let ac = UIAlertController(title: "Change City", message: "Enter a new city", preferredStyle: .alert)
-        ac.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
-        ac.addTextField { (textField) in textField.text = "Windsor"}
-        // 3. Grab the value from the text field, and print it when the user clicks OK.
-        ac.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak ac] (_) in
-            let textField = ac?.textFields![0] // Force unwrapping because we know it exists.
-            print("Text field: \(String(describing: textField?.text))")
-        }))
-        self.present(ac, animated: true)
-    }
 }
 
 extension UpcomingViewController: UITableViewDelegate{
@@ -101,7 +101,7 @@ extension UpcomingViewController: UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "customCell") as! TableViewCell
-        
+        // get event index
         let event = self.events[indexPath.row]
         cell.title.text = event.title
         cell.address.text = event.country
@@ -111,7 +111,6 @@ extension UpcomingViewController: UITableViewDataSource{
     }
 }
 
-// create UIImageView extension
 extension UIImageView{
     // create loadImage function that's used to load the image from url
     func loadImage(imgUrl: URL){
