@@ -13,6 +13,7 @@ class UpcomingViewController: UIViewController {
     
     // MARK:: Properties
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
     var events = [Event]()
     
     
@@ -26,6 +27,8 @@ class UpcomingViewController: UIViewController {
         // set tableView delegate and dataSource
         tableView.delegate = self
         tableView.dataSource = self
+        // set search delegate
+        searchBar.delegate = self
     }
     
     // MARK:: Methods
@@ -76,6 +79,7 @@ class UpcomingViewController: UIViewController {
                     self.events = jResult.results
                 }catch let error{
                     // if any error
+//                    self.alert(message: "No Result Found!")
                     print("Error here \(error.localizedDescription)")
                 }
                 DispatchQueue.main.sync {
@@ -123,5 +127,16 @@ extension UIImageView{
                 }
             }
         }
+    }
+}
+
+extension UpcomingViewController: UISearchBarDelegate{
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        // // get searched text
+        guard let searchText = searchBar.text else {return}
+        // pull events from API with the searched text
+        getEvent(search: searchText)
+        // resign keyboard
+        searchBar.resignFirstResponder()
     }
 }

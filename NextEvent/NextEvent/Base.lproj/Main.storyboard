@@ -144,6 +144,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="searchBar" destination="NTL-Dm-HML" id="RDp-l5-zKG"/>
                         <outlet property="tableView" destination="ncg-rx-JHT" id="dvv-ZT-Kpq"/>
                     </connections>
                 </viewController>
