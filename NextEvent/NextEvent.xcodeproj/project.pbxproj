@@ -19,6 +19,7 @@
 		8D7D91342546509B0047BF3B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D7D91322546509B0047BF3B /* LaunchScreen.storyboard */; };
 		8D7D913F2546509C0047BF3B /* NextEventTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7D913E2546509C0047BF3B /* NextEventTests.swift */; };
 		8D7D914A2546509C0047BF3B /* NextEventUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7D91492546509C0047BF3B /* NextEventUITests.swift */; };
+		8D9D0E12255DC9730057784D /* SpinnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9D0E11255DC9730057784D /* SpinnerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		8D7D91452546509C0047BF3B /* NextEventUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NextEventUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D7D91492546509C0047BF3B /* NextEventUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextEventUITests.swift; sourceTree = "<group>"; };
 		8D7D914B2546509C0047BF3B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8D9D0E11255DC9730057784D /* SpinnerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinnerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +99,7 @@
 			children = (
 				8D29572C254A797100F02F70 /* TableViewCell.swift */,
 				8D4AE3912557E5BD0054D543 /* HTTPHeaders.swift */,
+				8D9D0E11255DC9730057784D /* SpinnerView.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -300,6 +303,7 @@
 				8D7D912A2546509B0047BF3B /* SceneDelegate.swift in Sources */,
 				8D4AE39A2559C1B60054D543 /* Result.swift in Sources */,
 				8D295744254A7CA800F02F70 /* UpcomingViewController.swift in Sources */,
+				8D9D0E12255DC9730057784D /* SpinnerView.swift in Sources */,
 				8D29573C254A7AE100F02F70 /* Event.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

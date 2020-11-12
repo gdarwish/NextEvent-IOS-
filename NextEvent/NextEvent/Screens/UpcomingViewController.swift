@@ -15,6 +15,7 @@ class UpcomingViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     var events = [Event]()
+    var filteredEvents = [Event]()
     
     
     override func viewWillAppear(_ animated: Bool) {
@@ -38,13 +39,20 @@ class UpcomingViewController: UIViewController {
         //1. Create the alert controller.
         let ac = UIAlertController(title: "Change City", message: "Enter a new city", preferredStyle: .alert)
         ac.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
-        ac.addTextField { (textField) in textField.text = "Windsor"}
+        ac.addTextField { (textField) in textField.text = "Canada"}
         // 3. Grab the value from the text field, and print it when the user clicks OK.
         ac.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak ac] (_) in
             let textField = ac?.textFields![0] // Force unwrapping because we know it exists.
             print("Text field: \(String(describing: textField?.text))")
+            
+            self.filterEventByContry(contry: (textField?.text)!)
+            
         }))
         self.present(ac, animated: true)
+    }
+    
+    func filterEventByContry(contry: String){
+            
     }
     
     // Create an alert with dynamic message
@@ -56,6 +64,8 @@ class UpcomingViewController: UIViewController {
     
     // pull data from API OR get data when searching
     func getEvent(search: String = ""){
+        // show spinner
+        self.showSpinner()
         // API URL
         let url = URL(string: "https://api.predicthq.com/v1/events/?q=\(search)")!
         var request = URLRequest(url: url)
@@ -88,6 +98,8 @@ class UpcomingViewController: UIViewController {
                     }
                     // reloadData tableView
                     self.tableView.reloadData()
+                    // remove the spinner
+                    self.removeSpinner()
                 }
             }
         }.resume()

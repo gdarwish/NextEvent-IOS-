@@ -31,11 +31,7 @@ class Event: Codable{
     var image: String = ""
 
     private enum CodingKeys: String, CodingKey {
-
-        
        case id, title,  description, start, location, country, category
-        
-        
     }
     
     
