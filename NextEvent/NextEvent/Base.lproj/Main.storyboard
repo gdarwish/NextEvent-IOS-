@@ -99,8 +99,27 @@
                                                         </label>
                                                     </subviews>
                                                 </stackView>
+                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="Zqx-mm-hVN">
+                                                    <rect key="frame" x="152" y="100" width="230" height="13"/>
+                                                    <subviews>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="location.viewfinder" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="BT3-gV-X0z">
+                                                            <rect key="frame" x="0.0" y="0.5" width="13" height="11.5"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="13" id="OUV-6A-dcL"/>
+                                                                <constraint firstAttribute="height" constant="13" id="pot-fV-UtS"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UcT-ky-EG6">
+                                                            <rect key="frame" x="14" y="0.0" width="216" height="13"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                            <nil key="textColor"/>
+                                                            <color key="highlightedColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="Zqx-mm-hVN" firstAttribute="leading" secondItem="wY1-NF-0eJ" secondAttribute="trailing" constant="12" id="9ya-5T-Zjq"/>
                                                 <constraint firstItem="wY1-NF-0eJ" firstAttribute="leading" secondItem="2MF-aL-mPh" secondAttribute="leading" constant="8" id="EMm-Dd-8zY"/>
                                                 <constraint firstItem="xli-Mu-XxG" firstAttribute="top" secondItem="tc9-i2-yd2" secondAttribute="bottom" constant="10" id="KtC-Lc-Rdt"/>
                                                 <constraint firstAttribute="trailing" secondItem="tc9-i2-yd2" secondAttribute="trailing" constant="12" id="PUy-Xm-Po6"/>
@@ -111,11 +130,14 @@
                                                 <constraint firstItem="xli-Mu-XxG" firstAttribute="leading" secondItem="wY1-NF-0eJ" secondAttribute="trailing" constant="12" id="fPo-yg-ue1"/>
                                                 <constraint firstItem="XqH-we-hdn" firstAttribute="top" secondItem="2MF-aL-mPh" secondAttribute="topMargin" constant="10" id="mwc-2b-82n"/>
                                                 <constraint firstAttribute="trailing" secondItem="xli-Mu-XxG" secondAttribute="trailing" constant="12" id="pWr-om-Yok"/>
+                                                <constraint firstItem="Zqx-mm-hVN" firstAttribute="top" secondItem="xli-Mu-XxG" secondAttribute="bottom" constant="10" id="rg6-Om-IkQ"/>
                                                 <constraint firstItem="wY1-NF-0eJ" firstAttribute="centerY" secondItem="2MF-aL-mPh" secondAttribute="centerY" id="sjL-QH-4VM"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Zqx-mm-hVN" secondAttribute="trailing" constant="12" id="uE6-Qb-ks7"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="address" destination="bBk-mc-lKF" id="90t-LJ-cVB"/>
+                                            <outlet property="country" destination="UcT-ky-EG6" id="Fmj-ob-crW"/>
                                             <outlet property="date" destination="2bd-vy-klA" id="u2K-AS-Ri5"/>
                                             <outlet property="img" destination="wY1-NF-0eJ" id="P8B-XW-OHh"/>
                                             <outlet property="title" destination="XqH-we-hdn" id="YzL-sa-wUw"/>
@@ -150,7 +172,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Xt-UQ-fsR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1194" y="-403"/>
+            <point key="canvasLocation" x="1192.753623188406" y="-403.125"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="wLJ-ZS-oX6">
@@ -214,6 +236,7 @@
         <image name="calendar" catalog="system" width="128" height="106"/>
         <image name="clock" catalog="system" width="128" height="121"/>
         <image name="location" catalog="system" width="128" height="121"/>
+        <image name="location.viewfinder" catalog="system" width="128" height="115"/>
         <image name="mappin.and.ellipse" catalog="system" width="118" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

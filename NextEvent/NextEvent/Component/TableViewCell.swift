@@ -14,6 +14,7 @@ class TableViewCell: UITableViewCell {
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var date: UILabel!
     @IBOutlet weak var address: UILabel!
+    @IBOutlet weak var country: UILabel!
     
     
 

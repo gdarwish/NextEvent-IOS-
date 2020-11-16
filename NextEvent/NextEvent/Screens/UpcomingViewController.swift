@@ -19,7 +19,7 @@ class UpcomingViewController: UIViewController {
     
     
     override func viewWillAppear(_ animated: Bool) {
-        // get events when the app runs
+//         get events when the app runs
         getEvent()
     }
     
@@ -45,14 +45,36 @@ class UpcomingViewController: UIViewController {
             let textField = ac?.textFields![0] // Force unwrapping because we know it exists.
             print("Text field: \(String(describing: textField?.text))")
             
-            self.filterEventByContry(contry: (textField?.text)!)
-            
+            self.filterEventByContry(countrySearched: (textField?.text)!)
         }))
         self.present(ac, animated: true)
     }
     
-    func filterEventByContry(contry: String){
-            
+    // The API returns the first 2 letters of the County name EX(CA for Canada)
+    // this methde returns the full name of the country
+    func getCountryName() -> String{
+        for event in events{
+            for county in Countries.allCases{
+                if event.country.lowercased() == county.rawValue.lowercased(){
+                    return county.name
+                }
+            }
+        }
+        return "No Name"
+    }
+    
+    func filterEventByContry(countrySearched: String){
+        events.removeAll()
+        for county in Countries.allCases{
+            if countrySearched.lowercased() != county.name.lowercased(){
+                // show error
+                alert(message: "'\(countrySearched)' was not found!")
+            }else{
+                print(county.rawValue)
+                getEvent(country: county.rawValue)
+                break
+            }
+        }
     }
     
     // Create an alert with dynamic message
@@ -63,11 +85,11 @@ class UpcomingViewController: UIViewController {
     }
     
     // pull data from API OR get data when searching
-    func getEvent(search: String = ""){
+    func getEvent(search: String = "", country: String = "US"){
         // show spinner
         self.showSpinner()
         // API URL
-        let url = URL(string: "https://api.predicthq.com/v1/events/?q=\(search)")!
+        let url = URL(string: "https://api.predicthq.com/v1/events/?q=\(search)&country=\(country)")!
         var request = URLRequest(url: url)
         // API Headers
         request.allHTTPHeaderFields = [
@@ -120,8 +142,9 @@ extension UpcomingViewController: UITableViewDataSource{
         // get event index
         let event = self.events[indexPath.row]
         cell.title.text = event.title
-        cell.address.text = event.country
-        cell.date.text = event.start
+        cell.address.text = "2124 Mark Ave"
+        cell.country.text = getCountryName()
+        cell.date.text = event.dateFormatted()
         cell.img?.loadImage(imgUrl: URL(string: event.getImage())!)
         return cell
     }

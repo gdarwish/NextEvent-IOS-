@@ -34,6 +34,21 @@ class Event: Codable{
        case id, title,  description, start, location, country, category
     }
     
+    func dateFormatted() -> String{
+        let dateFormatterGet = DateFormatter()
+        dateFormatterGet.locale = Locale(identifier: "en_US_POSIX")
+        dateFormatterGet.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
+
+        let dateFormatterPrint = DateFormatter()
+        dateFormatterPrint.dateFormat = "MMM dd,yyyy"
+        
+        if let date = dateFormatterGet.date(from: start) {
+            return dateFormatterPrint.string(from: date)
+        } else {
+           print("There was an error decoding the string")
+        }
+        return "No Date"
+    }
     
     func getLongitude() -> Double{
         if location.count >= 2{
