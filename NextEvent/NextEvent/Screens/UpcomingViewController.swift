@@ -143,6 +143,10 @@ extension UpcomingViewController: UITableViewDataSource{
         let event = self.events[indexPath.row]
         cell.title.text = event.title
         cell.address.text = "2124 Mark Ave"
+        
+//          cell.address.text = event.getAddress()
+//        print("getAddress  \(event.getAddress())")
+        
         cell.country.text = getCountryName()
         cell.date.text = event.dateFormatted()
         cell.img?.loadImage(imgUrl: URL(string: event.getImage())!)

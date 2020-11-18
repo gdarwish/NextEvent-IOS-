@@ -6,8 +6,11 @@
 //
 
 import Foundation
+import CoreLocation
 
 class Event: Codable{
+    
+    let geocoder = CLGeocoder()
     
     init(id: String, title: String, description: String, start: String, location: [Double], country: String, category: String) {
         self.id = id
@@ -26,7 +29,6 @@ class Event: Codable{
     var location: [Double]
     var country: String
     var category: String
-    
     
     var image: String = ""
 
@@ -120,6 +122,62 @@ class Event: Codable{
             image = "default image";
         }
         return image;
+    }
+   
+    func getAddress()-> String{
+        var add: String = ""
+        geocoder.reverseGeocodeLocation(CLLocation(latitude: getLatitude(), longitude: getLongitude()), completionHandler: {
+                (placemarks, error) in
+                if let error = error {
+                    print("Error - \(error.localizedDescription)")
+                    return
+                }
+            
+            
+
+                if let places = placemarks, let last = places.last, !places.isEmpty {
+                    
+//                    print(last.displayAddress)
+                    add = last.displayAddress
+//                    add += last.displayAddress
+                }
+            
+            })
+
+        print(add)
+        return add
+    }
+}
+
+extension CLPlacemark {
+    var displayAddress: String {
+        var addressString = ""
+
+        if let locationName = name {
+            addressString += "\(locationName)\n"
+        }
+
+        if let number = subThoroughfare {
+            addressString += "\(number)"
+        }
+
+        if let street = thoroughfare {
+            addressString += " \(street)\n"
+        }
+
+        if let city = locality {
+            addressString += "\(city) "
+        }
+
+        if let province = administrativeArea {
+            addressString += "\(province)\n"
+        }
+
+        if let postal = postalCode {
+            addressString += "\(postal)"
+        }
+
+        return addressString
     }
 }
 
