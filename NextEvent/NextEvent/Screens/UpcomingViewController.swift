@@ -65,15 +65,18 @@ class UpcomingViewController: UIViewController {
     
     func filterEventByContry(countrySearched: String){
         events.removeAll()
+        var found = false
         for county in Countries.allCases{
-            if countrySearched.lowercased() != county.name.lowercased(){
+            if countrySearched.lowercased() == county.name.lowercased(){
                 // show error
-                alert(message: "'\(countrySearched)' was not found!")
-            }else{
+                found = true
                 print(county.rawValue)
                 getEvent(country: county.rawValue)
                 break
             }
+        }
+        if !found {
+            alert(message: "'\(countrySearched)' was not found!")
         }
     }
     
@@ -126,10 +129,32 @@ class UpcomingViewController: UIViewController {
             }
         }.resume()
     }
+    
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        print("NAVIGATE")
+//
+//        if let vc = segue.destination as? DetailEventViewController {
+////            vc.detailEvent = events[0]
+//
+//            if let index = tableView.indexPathForSelectedRow?.row {
+//                vc.detailEvent = events[index]
+//
+//                print("HERE")
+//
+//            }
+//        }
+//    }
 }
-
 extension UpcomingViewController: UITableViewDelegate{
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        print("Tap")
+//        if let vc = storyboard?.instantiateViewController(identifier: "Detail") as? DetailEventViewController{
+//            vc.detailEvent = events[indexPath.row]
+//            navigationController?.pushViewController(vc, animated: true)
+//        }
+    }
 }
 
 extension UpcomingViewController: UITableViewDataSource{
