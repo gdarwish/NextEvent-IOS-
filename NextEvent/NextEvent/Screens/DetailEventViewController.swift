@@ -43,10 +43,33 @@ class DetailEventViewController: UIViewController {
     
     
     @IBAction func shareButton(_ sender: Any) {
+        // text to share
+        let title = detailEvent.title
+        let date = detailEvent.dateFormatted()
+        let message = "Check this event out: \(title) that's going to be hold on \(date)"
+
+        // set up activity view controller
+        let textToShare = [ message ]
+        
+        let activityViewController = UIActivityViewController(activityItems: textToShare, applicationActivities: nil)
+        
+        activityViewController.popoverPresentationController?.sourceView = self.view
+        // exclude some activity types from the list
+        activityViewController.excludedActivityTypes = [ UIActivity.ActivityType.airDrop, UIActivity.ActivityType.postToFacebook ]
+
+        // present the view controller
+        self.present(activityViewController, animated: true)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // add event data
+        image.loadImage(imgUrl: URL(string: detailEvent.getImage())!)
+        titleLabel.text = detailEvent.title
+        dateLabel.text = detailEvent.dateFormatted()
+        addressLabel.text = "2124 Mark"
+        descriptionLabel.text =  detailEvent.description
        
         // set border on buttons view
         buttonsView.layer.borderWidth = 1
