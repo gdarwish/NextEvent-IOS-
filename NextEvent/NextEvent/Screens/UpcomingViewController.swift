@@ -92,42 +92,46 @@ class UpcomingViewController: UIViewController {
         // show spinner
         self.showSpinner()
         // API URL
-        let url = URL(string: "https://api.predicthq.com/v1/events/?q=\(search)&country=\(country)")!
-        var request = URLRequest(url: url)
-        // API Headers
-        request.allHTTPHeaderFields = [
-            "Authorization": "Bearer l5V8mMsVhA99CwkPxc7T2E9IU_SCxzJPxQDdqQua",
-            "Accept": "application/json"
-        ]
-        URLSession.shared.dataTask(with: request) { (data, response, error) in
-            if let error = error{
-                print("Error \(error.localizedDescription)")
-            }else{
-                do{
-                    // get data from result
-                    guard let jData = data else {return}
-                    // create jsonDecoder
-                    let jsonDecoder = JSONDecoder()
-                    // get the results and decode Event from jData
-                    let jResult = try jsonDecoder.decode(Result.self, from: jData)
-                    // add the results to the events array
-                    self.events = jResult.results
-                }catch let error{
-                    // if any error
-//                    self.alert(message: "No Result Found!")
-                    print("Error here \(error.localizedDescription)")
-                }
-                DispatchQueue.main.sync {
-                    if self.events.isEmpty{
-                        self.alert(message: "No Result Found!")
+        if let url = URL(string: "https://api.predicthq.com/v1/events/?q=\(search)&country=\(country)") {
+            var request = URLRequest(url: url)
+            // API Headers
+            request.allHTTPHeaderFields = [
+                "Authorization": "Bearer l5V8mMsVhA99CwkPxc7T2E9IU_SCxzJPxQDdqQua",
+                "Accept": "application/json"
+            ]
+            URLSession.shared.dataTask(with: request) { (data, response, error) in
+                if let error = error{
+                    print("Error \(error.localizedDescription)")
+                }else{
+                    do{
+                        // get data from result
+                        guard let jData = data else {return}
+                        // create jsonDecoder
+                        let jsonDecoder = JSONDecoder()
+                        // get the results and decode Event from jData
+                        let jResult = try jsonDecoder.decode(Result.self, from: jData)
+                        // add the results to the events array
+                        self.events = jResult.results
+                    }catch let error{
+                        // if any error
+                        print("Error here \(error.localizedDescription)")
                     }
-                    // reloadData tableView
-                    self.tableView.reloadData()
-                    // remove the spinner
-                    self.removeSpinner()
+                    DispatchQueue.main.sync {
+                        if self.events.isEmpty{
+                            print("Error")
+                        }
+                        // reloadData tableView
+                        self.tableView.reloadData()
+                        // remove the spinner
+                        self.removeSpinner()
+                    }
                 }
-            }
-        }.resume()
+            }.resume()
+        }else{
+            self.removeSpinner()
+            alert(message: "'\(search)' was not found!")
+        }
+
     }
     
 //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -148,12 +152,11 @@ class UpcomingViewController: UIViewController {
 extension UpcomingViewController: UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        print("Tap")
-//        if let vc = storyboard?.instantiateViewController(identifier: "Detail") as? DetailEventViewController{
-//            vc.detailEvent = events[indexPath.row]
-//            navigationController?.pushViewController(vc, animated: true)
-//        }
+
+        if let vc = storyboard?.instantiateViewController(identifier: "Detail") as? DetailEventViewController{
+            vc.detailEvent = events[indexPath.row]
+            navigationController?.pushViewController(vc, animated: true)
+        }
     }
 }
 
@@ -169,7 +172,7 @@ extension UpcomingViewController: UITableViewDataSource{
         cell.title.text = event.title
         cell.address.text = "2124 Mark Ave"
         
-//          cell.address.text = event.getAddress()
+//        cell.address.text = getAddress()
 //        print("getAddress  \(event.getAddress())")
         
         cell.country.text = getCountryName()

@@ -22,6 +22,7 @@
 		8D9D0E12255DC9730057784D /* SpinnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9D0E11255DC9730057784D /* SpinnerView.swift */; };
 		8DA7651D2560C0DB0036EE0D /* Countries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA7651C2560C0DB0036EE0D /* Countries.swift */; };
 		8DBD1C672564F914004BDCBA /* DetailEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBD1C662564F914004BDCBA /* DetailEventViewController.swift */; };
+		8DBD1C6F2565EEE0004BDCBA /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBD1C6E2565EEE0004BDCBA /* MapViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,7 @@
 		8D9D0E11255DC9730057784D /* SpinnerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinnerView.swift; sourceTree = "<group>"; };
 		8DA7651C2560C0DB0036EE0D /* Countries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Countries.swift; sourceTree = "<group>"; };
 		8DBD1C662564F914004BDCBA /* DetailEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailEventViewController.swift; sourceTree = "<group>"; };
+		8DBD1C6E2565EEE0004BDCBA /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +97,7 @@
 			children = (
 				8D295743254A7CA800F02F70 /* UpcomingViewController.swift */,
 				8DBD1C662564F914004BDCBA /* DetailEventViewController.swift */,
+				8DBD1C6E2565EEE0004BDCBA /* MapViewController.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -303,6 +306,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8DBD1C6F2565EEE0004BDCBA /* MapViewController.swift in Sources */,
 				8D4AE3922557E5BD0054D543 /* HTTPHeaders.swift in Sources */,
 				8D29572D254A797100F02F70 /* TableViewCell.swift in Sources */,
 				8D7D91282546509B0047BF3B /* AppDelegate.swift in Sources */,
