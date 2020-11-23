@@ -24,7 +24,11 @@ class DetailEventViewController: UIViewController {
     
     //MARK:: Methods
     @IBAction func MoreInfoButton(_ sender: Any) {
-        if let url = URL(string: "https://www.google.com/search?rls=en&q=") {
+        // title
+        let title = detailEvent.title
+        // replace space with %20 for Google search
+        let urlSearch = title.replacingOccurrences(of: " ", with: "%20")
+        if let url = URL(string: "https://www.google.com/search?source=h&q=\(urlSearch)") {
                 let config = SFSafariViewController.Configuration()
                 config.entersReaderIfAvailable = true
                 let vc = SFSafariViewController(url: url, configuration: config)
