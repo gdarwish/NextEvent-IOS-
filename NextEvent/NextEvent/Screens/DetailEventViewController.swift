@@ -76,7 +76,7 @@ class DetailEventViewController: UIViewController {
         image.loadImage(imgUrl: URL(string: detailEvent.getImage())!)
         titleLabel.text = detailEvent.title
         dateLabel.text = detailEvent.dateFormatted()
-        addressLabel.text = "2124 Mark"
+        addressLabel.text = detailEvent.address
         if detailEvent.description.isEmpty{
             descriptionText.text = "No Description!"
             

@@ -6,13 +6,10 @@
 //
 
 import Foundation
-import CoreLocation
 
 class Event: Codable{
-    
-    let geocoder = CLGeocoder()
-    
-    init(id: String, title: String, description: String, start: String, location: [Double], country: String, category: String) {
+        
+    init(id: String, title: String, description: String, start: String, location: [Double], country: String, category: String, entities: [Entity]) {
         self.id = id
         self.title = title
         self.description = description
@@ -20,6 +17,7 @@ class Event: Codable{
         self.location = location
         self.country = country
         self.category = category
+        self.entities = entities
     }
     
     var id: String
@@ -29,11 +27,16 @@ class Event: Codable{
     var location: [Double]
     var country: String
     var category: String
-    
+    var entities: [Entity]
     var image: String = ""
+    var address: String {
+        get {
+            return entities.count == 0 ? "Not available" : entities[0].formatted_address
+        }
+    }
 
     private enum CodingKeys: String, CodingKey {
-       case id, title,  description, start, location, country, category
+       case id, title,  description, start, location, country, category, entities
     }
     
     func dateFormatted() -> String{
@@ -123,61 +126,4 @@ class Event: Codable{
         }
         return image;
     }
-   
-    func getAddress()-> String{
-        var add: String = ""
-        geocoder.reverseGeocodeLocation(CLLocation(latitude: getLatitude(), longitude: getLongitude()), completionHandler: {
-                (placemarks, error) in
-                if let error = error {
-                    print("Error - \(error.localizedDescription)")
-                    return
-                }
-            
-            
-
-                if let places = placemarks, let last = places.last, !places.isEmpty {
-                    
-//                    print(last.displayAddress)
-                    add = last.displayAddress
-//                    add += last.displayAddress
-                }
-            
-            })
-
-        print(add)
-        return add
-    }
 }
-
-extension CLPlacemark {
-    var displayAddress: String {
-        var addressString = ""
-
-        if let locationName = name {
-            addressString += "\(locationName)\n"
-        }
-
-        if let number = subThoroughfare {
-            addressString += "\(number)"
-        }
-
-        if let street = thoroughfare {
-            addressString += " \(street)\n"
-        }
-
-        if let city = locality {
-            addressString += "\(city) "
-        }
-
-        if let province = administrativeArea {
-            addressString += "\(province)\n"
-        }
-
-        if let postal = postalCode {
-            addressString += "\(postal)"
-        }
-
-        return addressString
-    }
-}
-
