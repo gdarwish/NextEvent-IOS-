@@ -43,8 +43,6 @@ class UpcomingViewController: UIViewController {
         // 3. Grab the value from the text field, and print it when the user clicks OK.
         ac.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak ac] (_) in
             let textField = ac?.textFields![0] // Force unwrapping because we know it exists.
-            print("Text field: \(String(describing: textField?.text))")
-            
             self.filterEventByContry(countrySearched: (textField?.text)!)
         }))
         self.present(ac, animated: true)
@@ -70,7 +68,6 @@ class UpcomingViewController: UIViewController {
             if countrySearched.lowercased() == county.name.lowercased(){
                 // show error
                 found = true
-                print(county.rawValue)
                 getEvent(country: county.rawValue)
                 break
             }

@@ -16,8 +16,9 @@ class DetailEventViewController: UIViewController {
     @IBOutlet weak var image: UIImageView!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var addressLabel: UILabel!
-    @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var countryLabel: UILabel!
+    @IBOutlet weak var descriptionText: UITextView!
     
     var detailEvent: Event!
 
@@ -51,7 +52,7 @@ class DetailEventViewController: UIViewController {
         // text to share
         let title = detailEvent.title
         let date = detailEvent.dateFormatted()
-        let message = "Check this event out: \(title) that's going to be hold on \(date)"
+        let message = "Check this event out: \(title) that's going to be hold on \(getCountryName()) at: \(date)"
 
         // set up activity view controller
         let textToShare = [ message ]
@@ -69,16 +70,33 @@ class DetailEventViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        
         // add event data
         image.loadImage(imgUrl: URL(string: detailEvent.getImage())!)
         titleLabel.text = detailEvent.title
         dateLabel.text = detailEvent.dateFormatted()
         addressLabel.text = "2124 Mark"
-        descriptionLabel.text =  detailEvent.description
+        if detailEvent.description.isEmpty{
+            descriptionText.text = "No Description!"
+            
+        }else{
+            descriptionText.text =  detailEvent.description
+        }
+        countryLabel.text = getCountryName()
        
         // set border on buttons view
         buttonsView.layer.borderWidth = 1
         buttonsView.layer.borderColor = UIColor.gray.cgColor
         
+    }
+    
+    func getCountryName() -> String{
+            for county in Countries.allCases{
+                if detailEvent.country.lowercased() == county.rawValue.lowercased(){
+                    return county.name
+                }
+            }
+        return "No Name"
     }
 }
