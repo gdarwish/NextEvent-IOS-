@@ -240,7 +240,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="58" height="22"/>
                                                 <state key="normal" image="pin" catalog="system"/>
                                                 <connections>
-                                                    <action selector="directionsButton:" destination="RqC-mt-18m" eventType="touchUpInside" id="w9C-Xi-WBb"/>
+                                                    <segue destination="SKh-YF-3gR" kind="show" identifier="showPin" id="yl0-8P-Vbc"/>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Direction" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RWL-So-J88">
@@ -361,11 +361,11 @@
             <objects>
                 <viewController id="SKh-YF-3gR" customClass="MapViewController" customModule="NextEvent" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Tbb-Il-5gM">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="wQj-aI-3AK">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                             </mapView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ne8-7U-wAQ"/>
@@ -379,7 +379,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="E1Q-Lw-vCf"/>
                     <connections>
-                        <outlet property="mapView" destination="wQj-aI-3AK" id="5YR-qP-V6H"/>
+                        <outlet property="mapView" destination="wQj-aI-3AK" id="xUp-n0-Y8M"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BGh-80-i1m" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

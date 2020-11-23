@@ -134,20 +134,6 @@ class UpcomingViewController: UIViewController {
 
     }
     
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        print("NAVIGATE")
-//
-//        if let vc = segue.destination as? DetailEventViewController {
-////            vc.detailEvent = events[0]
-//
-//            if let index = tableView.indexPathForSelectedRow?.row {
-//                vc.detailEvent = events[index]
-//
-//                print("HERE")
-//
-//            }
-//        }
-//    }
 }
 extension UpcomingViewController: UITableViewDelegate{
     

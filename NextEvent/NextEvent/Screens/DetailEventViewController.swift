@@ -36,9 +36,10 @@ class DetailEventViewController: UIViewController {
     }
     
     
-    @IBAction func directionsButton(_ sender: Any) {
-        let vc = MapViewController()
-        self.navigationController?.pushViewController(vc, animated: true)
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? MapViewController {
+            vc.detailEvent = self.detailEvent
+        }
     }
     
     
