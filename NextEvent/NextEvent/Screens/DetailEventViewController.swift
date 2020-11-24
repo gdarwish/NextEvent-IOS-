@@ -49,7 +49,7 @@ class DetailEventViewController: UIViewController {
         newEvent.date = detailEvent.dateFormatted()
         newEvent.address = detailEvent.address
         newEvent.image = detailEvent.getImage()
-        newEvent.country = detailEvent.country
+        newEvent.country = countryLabel.text!
         newEvent.latitude = detailEvent.getLatitude()
         newEvent.longitude = detailEvent.getLongitude()
         
@@ -58,7 +58,7 @@ class DetailEventViewController: UIViewController {
         }catch{
             print("Error \(error.localizedDescription)")
         }
-        let ac = UIAlertController(title: "NextEvent", message: "New entry Saved!", preferredStyle: .alert)
+        let ac = UIAlertController(title: "NextEvent", message: "New Event Saved!", preferredStyle: .alert)
         ac.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         self.present(ac, animated: true)
     }
