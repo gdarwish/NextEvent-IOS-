@@ -7,6 +7,7 @@
 
 import UIKit
 import SafariServices
+import CoreData
 
 
 class DetailEventViewController: UIViewController {
@@ -21,6 +22,8 @@ class DetailEventViewController: UIViewController {
     @IBOutlet weak var descriptionText: UITextView!
     
     var detailEvent: Event!
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+
 
     
     //MARK:: Methods
@@ -38,6 +41,26 @@ class DetailEventViewController: UIViewController {
         }
     
     @IBAction func saveButton(_ sender: Any) {
+        
+        let newEvent = EventModel(context: self.context)
+        newEvent.id = detailEvent.id
+        newEvent.title = detailEvent.title
+        newEvent.descriptionEvent = detailEvent.description
+        newEvent.date = detailEvent.dateFormatted()
+        newEvent.address = detailEvent.address
+        newEvent.image = detailEvent.getImage()
+        newEvent.country = countryLabel.text!
+        newEvent.latitude = detailEvent.getLatitude()
+        newEvent.longitude = detailEvent.getLongitude()
+        
+        do{
+            try self.context.save()
+        }catch{
+            print("Error \(error.localizedDescription)")
+        }
+        let ac = UIAlertController(title: "NextEvent", message: "New Event Saved!", preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(ac, animated: true)
     }
     
     
