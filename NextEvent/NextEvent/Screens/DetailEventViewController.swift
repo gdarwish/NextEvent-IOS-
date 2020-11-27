@@ -109,7 +109,7 @@ class DetailEventViewController: UIViewController {
         countryLabel.text = getCountryName()
        
         // set border on buttons view
-        buttonsView.layer.borderWidth = 1
+        buttonsView.layer.borderWidth = 0.5
         buttonsView.layer.borderColor = UIColor.gray.cgColor
         
     }

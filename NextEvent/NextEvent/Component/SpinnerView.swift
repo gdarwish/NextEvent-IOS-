@@ -17,7 +17,7 @@ extension UIViewController{
         // set the view background color
         aView?.backgroundColor = UIColor.init(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5)
         // create a UIActivityIndicatorView
-        let ai = UIActivityIndicatorView(style: .large)
+        let ai = UIActivityIndicatorView(style: .medium)
         // center the Indicator
         ai.center = aView!.center
         // start

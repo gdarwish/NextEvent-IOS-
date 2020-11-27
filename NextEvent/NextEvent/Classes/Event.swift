@@ -122,7 +122,7 @@ class Event: Codable{
             image = "https://gdarwish.scweb.ca/NextEventImages/Concerts.png";
             break;
         default:
-            image = "default image";
+            image = "https://gdarwish.scweb.ca/NextEventImages/Disasters.png";
         }
         return image;
     }

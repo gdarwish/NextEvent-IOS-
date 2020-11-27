@@ -16,6 +16,7 @@ class UpcomingViewController: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     var events = [Event]()
     var filteredEvents = [Event]()
+    var countySearched = "US"
     
     
     override func viewWillAppear(_ animated: Bool) {
@@ -39,7 +40,7 @@ class UpcomingViewController: UIViewController {
         //1. Create the alert controller.
         let ac = UIAlertController(title: "Change City", message: "Enter a new city", preferredStyle: .alert)
         ac.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
-        ac.addTextField { (textField) in textField.text = "Canada"}
+        ac.addTextField { (textField) in textField.placeholder = "Canada"}
         // 3. Grab the value from the text field, and print it when the user clicks OK.
         ac.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak ac] (_) in
             let textField = ac?.textFields![0] // Force unwrapping because we know it exists.
@@ -68,7 +69,10 @@ class UpcomingViewController: UIViewController {
             if countrySearched.lowercased() == county.name.lowercased(){
                 // show error
                 found = true
-                getEvent(country: county.rawValue)
+                // chnage the city
+                countySearched = county.rawValue
+                // get events
+                getEvent()
                 break
             }
         }
@@ -83,13 +87,15 @@ class UpcomingViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         present(alert, animated: true)
     }
-    
+        
     // pull data from API OR get data when searching
-    func getEvent(search: String = "", country: String = "US"){
+    func getEvent(search: String = ""){
         // show spinner
         self.showSpinner()
+        // prepare search text
+        let urlSearch = search.replacingOccurrences(of: " ", with: "%20")
         // API URL
-        if let url = URL(string: "https://api.predicthq.com/v1/events/?q=\(search)&country=\(country)") {
+        if let url = URL(string: "https://api.predicthq.com/v1/events/?q=\(urlSearch)&country=\(countySearched)") {
             var request = URLRequest(url: url)
             // API Headers
             request.allHTTPHeaderFields = [
