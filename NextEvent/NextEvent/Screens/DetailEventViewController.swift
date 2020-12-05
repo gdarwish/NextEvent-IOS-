@@ -115,9 +115,9 @@ class DetailEventViewController: UIViewController {
     }
     
     func getCountryName() -> String{
-            for county in Countries.allCases{
-                if detailEvent.country.lowercased() == county.rawValue.lowercased(){
-                    return county.name
+            for country in Countries.allCases{
+                if detailEvent.country.lowercased() == country.rawValue.lowercased(){
+                    return country.name
                 }
             }
         return "No Name"

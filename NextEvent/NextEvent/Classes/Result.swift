@@ -8,15 +8,13 @@
 import Foundation
 
 class Result: Codable {
-    init(count: Int, overflow: Bool, next: String, results: [Event]) {
+    init(count: Int, overflow: Bool, results: [Event]) {
         self.count = count
         self.overflow = overflow
-        self.next = next
         self.results = results
     }
     
     let count: Int
     let overflow: Bool
-    let next: String
     let results: [Event]
 }

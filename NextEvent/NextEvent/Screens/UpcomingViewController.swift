@@ -16,7 +16,7 @@ class UpcomingViewController: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     var events = [Event]()
     var filteredEvents = [Event]()
-    var countySearched = "US"
+    var countrySearched = "US"
     
     
     override func viewWillAppear(_ animated: Bool) {
@@ -49,13 +49,13 @@ class UpcomingViewController: UIViewController {
         self.present(ac, animated: true)
     }
     
-    // The API returns the first 2 letters of the County name EX(CA for Canada)
+    // The API returns the first 2 letters of the Country name EX(CA for Canada)
     // this methde returns the full name of the country
     func getCountryName() -> String{
         for event in events{
-            for county in Countries.allCases{
-                if event.country.lowercased() == county.rawValue.lowercased(){
-                    return county.name
+            for country in Countries.allCases{
+                if event.country.lowercased() == country.rawValue.lowercased(){
+                    return country.name
                 }
             }
         }
@@ -65,12 +65,12 @@ class UpcomingViewController: UIViewController {
     func filterEventByContry(countrySearched: String){
         events.removeAll()
         var found = false
-        for county in Countries.allCases{
-            if countrySearched.lowercased() == county.name.lowercased(){
+        for country in Countries.allCases{
+            if countrySearched.lowercased() == country.name.lowercased(){
                 // show error
                 found = true
                 // chnage the city
-                countySearched = county.rawValue
+                self.countrySearched = country.rawValue
                 // get events
                 getEvent()
                 break
@@ -95,7 +95,7 @@ class UpcomingViewController: UIViewController {
         // prepare search text
         let urlSearch = search.replacingOccurrences(of: " ", with: "%20")
         // API URL
-        if let url = URL(string: "https://api.predicthq.com/v1/events/?q=\(urlSearch)&country=\(countySearched)") {
+        if let url = URL(string: "https://api.predicthq.com/v1/events/?q=\(urlSearch)&country=\(countrySearched)") {
             var request = URLRequest(url: url)
             // API Headers
             request.allHTTPHeaderFields = [
@@ -121,7 +121,7 @@ class UpcomingViewController: UIViewController {
                     }
                     DispatchQueue.main.sync {
                         if self.events.isEmpty{
-                            print("Error")
+                            self.alert(message: "'\(search)' was not found!")
                         }
                         // reloadData tableView
                         self.tableView.reloadData()
