@@ -63,10 +63,10 @@ class UpcomingViewController: UIViewController {
     }
     
     func filterEventByContry(countrySearched: String){
-        events.removeAll()
         var found = false
         for country in Countries.allCases{
             if countrySearched.lowercased() == country.name.lowercased(){
+                events.removeAll()
                 // show error
                 found = true
                 // chnage the city
