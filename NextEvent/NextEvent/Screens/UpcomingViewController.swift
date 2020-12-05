@@ -38,7 +38,7 @@ class UpcomingViewController: UIViewController {
     // change city bar button
     @IBAction func changeCity(_ sender: Any) {
         //1. Create the alert controller.
-        let ac = UIAlertController(title: "Change City", message: "Enter a new city", preferredStyle: .alert)
+        let ac = UIAlertController(title: "Change Country", message: "Enter a new Country", preferredStyle: .alert)
         ac.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
         ac.addTextField { (textField) in textField.placeholder = "Canada"}
         // 3. Grab the value from the text field, and print it when the user clicks OK.
